@@ -32,6 +32,8 @@ except AttributeError:  # For old Python versions
     collectionsAbc = collections  # Используем collections.Iterable
 
 import backtrader as bt
+from tqdm import tqdm
+
 from .utils.py3 import (map, range, zip, with_metaclass, string_types,
                         integer_types)
 
@@ -672,7 +674,7 @@ class Cerebro(with_metaclass(MetaParams, object)):
 
         The signature of the callback must support the following:
 
-          - callback(msg, \*args, \*\*kwargs)
+          - callback(msg, *args, **kwargs)
 
         The actual ``msg``, ``*args`` and ``**kwargs`` received are
         implementation defined (depend entirely on the *data/broker/store*) but
@@ -714,7 +716,7 @@ class Cerebro(with_metaclass(MetaParams, object)):
 
         The signature of the callback must support the following:
 
-          - callback(data, status, \*args, \*\*kwargs)
+          - callback(data, status, *args, **kwargs)
 
         The actual ``*args`` and ``**kwargs`` received are implementation
         defined (depend entirely on the *data/broker/store*) but in general one
@@ -1208,7 +1210,7 @@ class Cerebro(with_metaclass(MetaParams, object)):
         # self._plotfillers2 = [list() for d in self.datas]
 
         if not predata:
-            for data in self.datas:
+            for data in tqdm(self.datas):
                 data.reset()
                 if self._exactbars < 1:  # datas can be full length
                     data.extend(size=self.params.lookahead)

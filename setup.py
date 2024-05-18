@@ -29,7 +29,7 @@ with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 # Package name
-pname = 'backtrader'
+pname = 'backtrader_paperswithbacktest'
 
 # Get the version ... execfile is only on Py2 ... use exec + compile + open
 vname = 'version.py'
@@ -37,7 +37,7 @@ with open(os.path.join(pname, vname)) as f:
     exec(compile(f.read(), vname, 'exec'))
 
 # Generate links
-gurl = 'https://github.com/mementum/' + pname
+gurl = 'https://github.com/paperswithbacktest/' + pname
 gdurl = gurl + '/tarball/' + __version__
 
 setuptools.setup(
@@ -109,7 +109,7 @@ setuptools.setup(
     # project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    # install_requires=['six'],
+    install_requires=['tqdm'],
 
     # List additional groups of dependencies here
     # (e.g. development dependencies).
